@@ -1,0 +1,50 @@
+type Schedule @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  startDate: AWSDate
+  EndDate: AWSDate
+  Programs: [Program] @connection(keyName: "bySchedule", fields: ["id"])
+  Campaigns: [Campaign] @connection(keyName: "bySchedule", fields: ["id"])
+}
+
+type Program @model @auth(rules: [{allow: public}]) @key(name: "bySchedule", fields: ["scheduleID"]) {
+  id: ID!
+  name: String
+  duration: AWSTimestamp
+  startDate: String
+  slotAvailable: Int
+  scheduleID: ID
+  CampaignsInPrograms: [ProgramCampaign] @connection(keyName: "byProgram", fields: ["id"])
+}
+
+type Campaign @model @auth(rules: [{allow: public}]) @key(name: "byBrand", fields: ["brandID"]) @key(name: "bySchedule", fields: ["scheduleID"]) {
+  id: ID!
+  startDate: AWSDate
+  endDate: AWSDate
+  slotAvailable: Int
+  slotUsed: Int
+  totalSlot: Int
+  brandID: ID
+  Programs: [ProgramCampaign] @connection(keyName: "byCampaign", fields: ["id"])
+  scheduleID: ID
+}
+
+type Category @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Name: String
+  Brands: [Brand] @connection(keyName: "byCategory", fields: ["id"])
+}
+
+type Brand @model @auth(rules: [{allow: public}]) @key(name: "byCategory", fields: ["categoryID"]) {
+  id: ID!
+  Name: String
+  categoryID: ID
+  Campaigns: [Campaign] @connection(keyName: "byBrand", fields: ["id"])
+}
+
+type ProgramCampaign @model(queries: null) @key(name: "byProgram", fields: ["programID", "campaignID"]) @key(name: "byCampaign", fields: ["campaignID", "programID"]) @auth(rules: [{allow: public}, {allow: public}]) {
+  id: ID!
+  programID: ID!
+  campaignID: ID!
+  program: Program! @connection(fields: ["programID"])
+  campaign: Campaign! @connection(fields: ["campaignID"])
+}
