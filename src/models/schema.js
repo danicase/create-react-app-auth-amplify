@@ -10,15 +10,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "startDate": {
-                    "name": "startDate",
+                "name": {
+                    "name": "name",
                     "isArray": false,
-                    "type": "AWSDate",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "EndDate": {
-                    "name": "EndDate",
+                "startDate": {
+                    "name": "startDate",
                     "isArray": false,
                     "type": "AWSDate",
                     "isRequired": false,
@@ -51,6 +51,13 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "scheduleID"
                     }
+                },
+                "endDate": {
+                    "name": "endDate",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -98,14 +105,14 @@ export const schema = {
                 "duration": {
                     "name": "duration",
                     "isArray": false,
-                    "type": "AWSTimestamp",
+                    "type": "AWSTime",
                     "isRequired": false,
                     "attributes": []
                 },
                 "startDate": {
                     "name": "startDate",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -275,6 +282,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "startDate": {
                     "name": "startDate",
                     "isArray": false,
@@ -286,6 +300,13 @@ export const schema = {
                     "name": "endDate",
                     "isArray": false,
                     "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "totalSlot": {
+                    "name": "totalSlot",
+                    "isArray": false,
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -303,20 +324,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "totalSlot": {
-                    "name": "totalSlot",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "brandID": {
-                    "name": "brandID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "Programs": {
                     "name": "Programs",
                     "isArray": true,
@@ -330,6 +337,13 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "campaign"
                     }
+                },
+                "brandID": {
+                    "name": "brandID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "scheduleID": {
                     "name": "scheduleID",
@@ -392,8 +406,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Name": {
-                    "name": "Name",
+                "name": {
+                    "name": "name",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -449,8 +463,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Name": {
-                    "name": "Name",
+                "name": {
+                    "name": "name",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -515,5 +529,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "63906c5d139f86742999317add5a4798"
+    "version": "3b935b320e39fee0af5be50c8e802c6b"
 };

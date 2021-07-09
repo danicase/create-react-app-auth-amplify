@@ -6,10 +6,11 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 export declare class Schedule {
   readonly id: string;
+  readonly name?: string;
   readonly startDate?: string;
-  readonly EndDate?: string;
   readonly Programs?: (Program | null)[];
   readonly Campaigns?: (Campaign | null)[];
+  readonly endDate?: string;
   constructor(init: ModelInit<Schedule>);
   static copyOf(source: Schedule, mutator: (draft: MutableModel<Schedule>) => MutableModel<Schedule> | void): Schedule;
 }
@@ -17,7 +18,7 @@ export declare class Schedule {
 export declare class Program {
   readonly id: string;
   readonly name?: string;
-  readonly duration?: number;
+  readonly duration?: string;
   readonly startDate?: string;
   readonly slotAvailable?: number;
   readonly scheduleID?: string;
@@ -36,13 +37,14 @@ export declare class ProgramCampaign {
 
 export declare class Campaign {
   readonly id: string;
+  readonly name?: string;
   readonly startDate?: string;
   readonly endDate?: string;
+  readonly totalSlot?: number;
   readonly slotAvailable?: number;
   readonly slotUsed?: number;
-  readonly totalSlot?: number;
-  readonly brandID?: string;
   readonly Programs?: (ProgramCampaign | null)[];
+  readonly brandID?: string;
   readonly scheduleID?: string;
   constructor(init: ModelInit<Campaign>);
   static copyOf(source: Campaign, mutator: (draft: MutableModel<Campaign>) => MutableModel<Campaign> | void): Campaign;
@@ -50,7 +52,7 @@ export declare class Campaign {
 
 export declare class Category {
   readonly id: string;
-  readonly Name?: string;
+  readonly name?: string;
   readonly Brands?: (Brand | null)[];
   constructor(init: ModelInit<Category>);
   static copyOf(source: Category, mutator: (draft: MutableModel<Category>) => MutableModel<Category> | void): Category;
@@ -58,7 +60,7 @@ export declare class Category {
 
 export declare class Brand {
   readonly id: string;
-  readonly Name?: string;
+  readonly name?: string;
   readonly categoryID?: string;
   readonly Campaigns?: (Campaign | null)[];
   constructor(init: ModelInit<Brand>);
