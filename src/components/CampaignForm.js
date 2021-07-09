@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { createCampaign } from '../graphql/mutations';
-import { listCampaigns } from '../graphql/queries';
+import { createCategory } from '../graphql/mutations';
+import { listCategorys } from '../graphql/queries';
 
-const initialState = { name: '', description: '' };
+const initialState = { name: '' };
 
 const CampaignForm = () => {
   const [formState, setFormState] = useState(initialState);
-  const [campaigns, setCampaigns] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetchCampaigns();
+    fetchCategories();
   }, []);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
   }
 
-  async function fetchCampaigns() {
+  async function fetchCategories() {
     try {
-      const campaignsData = await API.graphql(graphqlOperation(listCampaigns));
-      const campaigns = campaignsData.data.listCampaigns.items;
-      console.log({ campaignsData });
-      setCampaigns(campaigns);
+      const categoriesData = await API.graphql(graphqlOperation(listCategorys));
+      const categories = categoriesData.data.listCategorys.items;
+      console.log({ categoriesData });
+      setCategories(categories);
     } catch (err) {
       console.log('error fetching campaigns');
     }
@@ -31,11 +31,11 @@ const CampaignForm = () => {
   async function addCampaign() {
     console.log({ formState });
     try {
-      if (!formState.name || !formState.description) return;
-      const campaign = { ...formState };
-      setCampaigns([...campaigns, campaign]);
+      if (!formState.name) return;
+      const category = { ...formState };
+      setCategories([...categories, category]);
       setFormState(initialState);
-      await API.graphql(graphqlOperation(createCampaign, { input: campaign }));
+      await API.graphql(graphqlOperation(createCategory, { input: category }));
     } catch (err) {
       console.log('error creating todo:', err);
     }
@@ -43,26 +43,19 @@ const CampaignForm = () => {
 
   return (
     <div style={styles.container}>
-      <h2>Amplify Campaigns</h2>
+      <h2>Amplify Categories</h2>
       <input
         onChange={(event) => setInput('name', event.target.value)}
         style={styles.input}
         value={formState.name}
         placeholder='Name'
       />
-      <input
-        onChange={(event) => setInput('description', event.target.value)}
-        style={styles.input}
-        value={formState.description}
-        placeholder='Description'
-      />
       <button style={styles.button} onClick={addCampaign}>
         Create Campaign
       </button>
-      {campaigns.map((todo, index) => (
-        <div key={todo.id ? todo.id : index} style={styles.todo}>
-          <p style={styles.todoName}>{todo.name}</p>
-          <p style={styles.todoDescription}>{todo.description}</p>
+      {categories.map((category, index) => (
+        <div key={category.id ? category.id : index} style={styles.todo}>
+          <p style={styles.todoName}>{category.name}</p>
         </div>
       ))}
     </div>
@@ -87,7 +80,6 @@ const styles = {
     fontSize: 18,
   },
   todoName: { fontSize: 20, fontWeight: 'bold' },
-  todoDescription: { marginBottom: 0 },
   button: {
     backgroundColor: 'black',
     color: 'white',

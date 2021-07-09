@@ -1,16 +1,17 @@
 type Schedule @model @auth(rules: [{allow: public}]) {
   id: ID!
+  name: String
   startDate: AWSDate
-  EndDate: AWSDate
   Programs: [Program] @connection(keyName: "bySchedule", fields: ["id"])
   Campaigns: [Campaign] @connection(keyName: "bySchedule", fields: ["id"])
+  endDate: AWSDate
 }
 
 type Program @model @auth(rules: [{allow: public}]) @key(name: "bySchedule", fields: ["scheduleID"]) {
   id: ID!
   name: String
-  duration: AWSTimestamp
-  startDate: String
+  duration: AWSTime
+  startDate: AWSDate
   slotAvailable: Int
   scheduleID: ID
   CampaignsInPrograms: [ProgramCampaign] @connection(keyName: "byProgram", fields: ["id"])
@@ -18,25 +19,26 @@ type Program @model @auth(rules: [{allow: public}]) @key(name: "bySchedule", fie
 
 type Campaign @model @auth(rules: [{allow: public}]) @key(name: "byBrand", fields: ["brandID"]) @key(name: "bySchedule", fields: ["scheduleID"]) {
   id: ID!
+  name: String
   startDate: AWSDate
   endDate: AWSDate
+  totalSlot: Int
   slotAvailable: Int
   slotUsed: Int
-  totalSlot: Int
-  brandID: ID
   Programs: [ProgramCampaign] @connection(keyName: "byCampaign", fields: ["id"])
+  brandID: ID
   scheduleID: ID
 }
 
 type Category @model @auth(rules: [{allow: public}]) {
   id: ID!
-  Name: String
+  name: String
   Brands: [Brand] @connection(keyName: "byCategory", fields: ["id"])
 }
 
 type Brand @model @auth(rules: [{allow: public}]) @key(name: "byCategory", fields: ["categoryID"]) {
   id: ID!
-  Name: String
+  name: String
   categoryID: ID
   Campaigns: [Campaign] @connection(keyName: "byBrand", fields: ["id"])
 }
@@ -48,3 +50,4 @@ type ProgramCampaign @model(queries: null) @key(name: "byProgram", fields: ["pro
   program: Program! @connection(fields: ["programID"])
   campaign: Campaign! @connection(fields: ["campaignID"])
 }
+ 
