@@ -404,3 +404,19 @@ export const filterBrands = /* GraphQL */ `
     }
   }
 `;
+
+export const filterCampaign = /* GraphQL */ `
+  query MyQuery($id: ID!) {
+    listCampaigns(filter: { brandID: { eq: $id } }) {
+      items {
+        id
+        name
+        startDate
+        endDate
+        totalSlot
+        slotUsed
+        slotAvailable
+      }
+    }
+  }
+`;
