@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #282c34;
+  min-height: 100vh;
 }
 
 .App-logo {
