@@ -68,7 +68,7 @@ const CategoryForm = ({ selectCategory }) => {
         <div
           key={category.id ? category.id : index}
           onClick={(e) => selectCategory(category.id)}
-          className='margin-bottom'
+          className='name-tile'
         >
           <p className='name'>{category.name}</p>
         </div>
