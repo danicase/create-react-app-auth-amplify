@@ -9,18 +9,21 @@ const BrandList = ({ category }) => {
   useEffect(() => {
     fetchBrands();
   }, []);
-  // query getBrands($id: ID!) {
-  //   listBrands(filter: {categoryID: {eq: $id}}) {
-  //     items {
-  //       id
-  //       name
-  //     }
-  //   }
-  // }
+  const filterBrands = /* GraphQL */ `
+    query filterBrands($id: ID!) {
+      listBrands(filter: { categoryID: { eq: $id } }) {
+        items {
+          id
+          name
+        }
+      }
+    }
+  `;
+
   async function fetchBrands() {
     try {
       const brandsData = await API.graphql(
-        graphqlOperation(listBrands, { categoryID: { eq: category } })
+        graphqlOperation(filterBrands, category)
       );
       const brands = brandsData.data.listBrands.items;
       console.log({ brandsData });

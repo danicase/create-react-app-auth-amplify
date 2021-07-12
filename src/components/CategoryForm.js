@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createCategory } from '../graphql/mutations';
-import { listCategorys } from '../graphql/queries';
 
+const listCategorys = /* GraphQL */ `
+  query ListCategorys(
+    $filter: ModelCategoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCategorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
 const initialState = { name: '' };
 
 const CategoryForm = ({ selectCategory }) => {
