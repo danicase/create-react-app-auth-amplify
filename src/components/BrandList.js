@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
+import { filterBrands } from '../graphql/queries';
 
-const filterBrands = /* GraphQL */ `
-  query filterBrands($id: ID!) {
-    listBrands(filter: { categoryID: { eq: $id } }) {
-      items {
-        id
-        name
-      }
-    }
-  }
-`;
+// const filterBrands = /* GraphQL */ `
+//   query filterBrands($id: ID!) {
+//     listBrands(filter: { categoryID: { eq: $id } }) {
+//       items {
+//         id
+//         name
+//       }
+//     }
+//   }
+// `;
 async function fetchBrands(id, callBack) {
   try {
     const brandsData = await API.graphql(
@@ -34,42 +35,15 @@ const BrandList = ({ category }) => {
   }, [category]);
 
   return (
-    <div style={styles.container}>
+    <div className='item'>
       <h2>Brands List</h2>
       {brands.map((brand, index) => (
-        <div key={brand.id ? brand.id : index} style={styles.todo}>
-          <p style={styles.todoName}>{brand.name}</p>
+        <div key={brand.id ? brand.id : index} className='margin-bottom'>
+          <p className='name'>{brand.name}</p>
         </div>
       ))}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    width: 400,
-    margin: '0 auto',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  todo: { marginBottom: 15 },
-  input: {
-    border: 'none',
-    backgroundColor: '#ddd',
-    marginBottom: 10,
-    padding: 8,
-    fontSize: 18,
-  },
-  todoName: { fontSize: 20, fontWeight: 'bold' },
-  button: {
-    backgroundColor: 'black',
-    color: 'white',
-    outline: 'none',
-    fontSize: 18,
-    padding: '12px 0px',
-  },
 };
 
 export default BrandList;

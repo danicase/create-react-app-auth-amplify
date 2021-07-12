@@ -10,11 +10,8 @@ const App = () => {
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <CategoryForm selectCategory={setSelectedCategory} />
-        <BrandList category={selectedCategory} />
-      </header>
+      <CategoryForm selectCategory={setSelectedCategory} />
+      <BrandList category={selectedCategory} />
     </div>
   );
 };

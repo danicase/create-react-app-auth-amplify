@@ -53,24 +53,24 @@ const CategoryForm = ({ selectCategory }) => {
   }
 
   return (
-    <div style={styles.container}>
+    <div className='item'>
       <h2>Amplify Categories</h2>
       <input
         onChange={(event) => setInput('name', event.target.value)}
-        style={styles.input}
+        className='input'
         value={formState.name}
         placeholder='Name'
       />
-      <button style={styles.button} onClick={addCategory}>
+      <button className='button' onClick={addCategory}>
         Create Category
       </button>
       {categories.map((category, index) => (
         <div
           key={category.id ? category.id : index}
           onClick={(e) => selectCategory(category.id)}
-          style={styles.todo}
+          className='margin-bottom'
         >
-          <p style={styles.todoName}>{category.name}</p>
+          <p className='name'>{category.name}</p>
         </div>
       ))}
     </div>
