@@ -14,7 +14,7 @@ const filterBrands = /* GraphQL */ `
 async function fetchBrands(id, callBack) {
   try {
     const brandsData = await API.graphql(
-      graphqlOperation(filterBrands, { $id: id })
+      graphqlOperation(filterBrands, { id })
     );
     const brands = brandsData.data.listBrands.items;
     console.log({ brandsData });
