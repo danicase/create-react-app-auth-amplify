@@ -393,3 +393,14 @@ export const syncProgramCampaigns = /* GraphQL */ `
     }
   }
 `;
+
+export const filterBrands = /* GraphQL */ `
+  query filterBrands($id: ID!) {
+    listBrands(filter: { categoryID: { eq: $id } }) {
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
