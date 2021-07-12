@@ -8,16 +8,14 @@ async function fetchBrands(id, callBack) {
       graphqlOperation(filterBrands, { id })
     );
     const brands = brandsData.data.listBrands.items;
-    console.log({ brandsData });
     callBack(brands);
   } catch (err) {
     console.log('error fetching brands', err);
   }
 }
 
-const BrandList = ({ category, selectBrands }) => {
+const BrandList = ({ category, selectBrand }) => {
   const [brands, setBrands] = useState([]);
-  console.log(brands);
 
   useEffect(() => {
     if (category) {
@@ -31,7 +29,7 @@ const BrandList = ({ category, selectBrands }) => {
       {brands.map((brand, index) => (
         <div
           key={brand.id ? brand.id : index}
-          onClick={(e) => selectBrands(category.id)}
+          onClick={(e) => selectBrand(brand.id)}
           className='name-tile'
         >
           <p className='name'>{brand.name}</p>

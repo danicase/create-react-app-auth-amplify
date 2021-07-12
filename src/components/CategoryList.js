@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { createCategory } from '../graphql/mutations';
 
 const listCategorys = /* GraphQL */ `
   query ListCategorys(
@@ -36,7 +35,7 @@ const CategoryList = ({ selectCategory }) => {
 
   return (
     <div className='item'>
-      <h2>Amplify Categories</h2>
+      <h2>Categories</h2>
       {categories.map((category, index) => (
         <div
           key={category.id ? category.id : index}
