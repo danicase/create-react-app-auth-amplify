@@ -5,7 +5,7 @@ import { listCategorys } from '../graphql/queries';
 
 const initialState = { name: '' };
 
-const CampaignForm = () => {
+const CategoryForm = ({ selectCategory }) => {
   const [formState, setFormState] = useState(initialState);
   const [categories, setCategories] = useState([]);
 
@@ -21,15 +21,13 @@ const CampaignForm = () => {
     try {
       const categoriesData = await API.graphql(graphqlOperation(listCategorys));
       const categories = categoriesData.data.listCategorys.items;
-      console.log({ categoriesData });
       setCategories(categories);
     } catch (err) {
-      console.log('error fetching campaigns');
+      console.log('error fetching categories', err);
     }
   }
 
-  async function addCampaign() {
-    console.log({ formState });
+  async function addCategory() {
     try {
       if (!formState.name) return;
       const category = { ...formState };
@@ -50,11 +48,15 @@ const CampaignForm = () => {
         value={formState.name}
         placeholder='Name'
       />
-      <button style={styles.button} onClick={addCampaign}>
-        Create Campaign
+      <button style={styles.button} onClick={addCategory}>
+        Create Category
       </button>
       {categories.map((category, index) => (
-        <div key={category.id ? category.id : index} style={styles.todo}>
+        <div
+          key={category.id ? category.id : index}
+          onClick={(e) => selectCategory(category.id)}
+          style={styles.todo}
+        >
           <p style={styles.todoName}>{category.name}</p>
         </div>
       ))}
@@ -89,4 +91,4 @@ const styles = {
   },
 };
 
-export default CampaignForm;
+export default CategoryForm;

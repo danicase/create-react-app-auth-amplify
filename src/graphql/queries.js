@@ -266,14 +266,7 @@ export const listCategorys = /* GraphQL */ `
       items {
         id
         name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
       }
-      nextToken
-      startedAt
     }
   }
 `;
