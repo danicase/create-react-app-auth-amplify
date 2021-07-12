@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listBrands } from '../graphql/queries';
 
+const filterBrands = /* GraphQL */ `
+  query filterBrands($id: ID!) {
+    listBrands(filter: { categoryID: { eq: $id } }) {
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
+async function fetchBrands(id, callBack) {
+  try {
+    const brandsData = await API.graphql(graphqlOperation(filterBrands, id));
+    const brands = brandsData.data.listBrands.items;
+    console.log({ brandsData });
+    callBack(brands);
+  } catch (err) {
+    console.log('error fetching brands', err);
+  }
+}
 const BrandList = ({ category }) => {
   const [brands, setBrands] = useState([]);
   console.log(brands);
 
   useEffect(() => {
-    fetchBrands();
-  }, []);
-  const filterBrands = /* GraphQL */ `
-    query filterBrands($id: ID!) {
-      listBrands(filter: { categoryID: { eq: $id } }) {
-        items {
-          id
-          name
-        }
-      }
-    }
-  `;
-
-  async function fetchBrands() {
-    try {
-      const brandsData = await API.graphql(
-        graphqlOperation(filterBrands, category)
-      );
-      const brands = brandsData.data.listBrands.items;
-      console.log({ brandsData });
-      setBrands(brands);
-    } catch (err) {
-      console.log('error fetching brands', err);
-    }
-  }
+    if (category) {
+      fetchBrands(category, setBrands);
+    } else setBrands([]);
+  }, [category]);
 
   return (
     <div style={styles.container}>
