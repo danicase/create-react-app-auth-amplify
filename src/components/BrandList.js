@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { filterBrands } from '../graphql/queries';
 
-// const filterBrands = /* GraphQL */ `
-//   query filterBrands($id: ID!) {
-//     listBrands(filter: { categoryID: { eq: $id } }) {
-//       items {
-//         id
-//         name
-//       }
-//     }
-//   }
-// `;
+const filterBrands = /* GraphQL */ `
+  query filterBrands($id: ID!) {
+    listBrands(filter: { categoryID: { eq: $id } }) {
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
 async function fetchBrands(id, callBack) {
   try {
     const brandsData = await API.graphql(
