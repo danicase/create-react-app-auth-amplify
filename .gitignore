@@ -2,6 +2,7 @@
 \#current-cloud-backend
 src/aws-exports.js
 amplify/backend/awscloudformation/
+amplify/backend/api/amplifypoc/resolvers
 amplify/backend/amplify-meta.json
 package-lock.json
 .vscode

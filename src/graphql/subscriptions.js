@@ -8,18 +8,13 @@ export const onCreateSchedule = /* GraphQL */ `
       name
       startDate
       endDate
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Programs {
         nextToken
-        startedAt
       }
       Campaigns {
         nextToken
-        startedAt
       }
     }
   }
@@ -31,18 +26,13 @@ export const onUpdateSchedule = /* GraphQL */ `
       name
       startDate
       endDate
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Programs {
         nextToken
-        startedAt
       }
       Campaigns {
         nextToken
-        startedAt
       }
     }
   }
@@ -54,18 +44,13 @@ export const onDeleteSchedule = /* GraphQL */ `
       name
       startDate
       endDate
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Programs {
         nextToken
-        startedAt
       }
       Campaigns {
         nextToken
-        startedAt
       }
     }
   }
@@ -79,14 +64,10 @@ export const onCreateProgram = /* GraphQL */ `
       startDate
       slotAvailable
       scheduleID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       CampaignsInPrograms {
         nextToken
-        startedAt
       }
     }
   }
@@ -100,14 +81,10 @@ export const onUpdateProgram = /* GraphQL */ `
       startDate
       slotAvailable
       scheduleID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       CampaignsInPrograms {
         nextToken
-        startedAt
       }
     }
   }
@@ -121,14 +98,10 @@ export const onDeleteProgram = /* GraphQL */ `
       startDate
       slotAvailable
       scheduleID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       CampaignsInPrograms {
         nextToken
-        startedAt
       }
     }
   }
@@ -145,14 +118,10 @@ export const onCreateCampaign = /* GraphQL */ `
       slotUsed
       brandID
       scheduleID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Programs {
         nextToken
-        startedAt
       }
     }
   }
@@ -169,14 +138,10 @@ export const onUpdateCampaign = /* GraphQL */ `
       slotUsed
       brandID
       scheduleID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Programs {
         nextToken
-        startedAt
       }
     }
   }
@@ -193,14 +158,10 @@ export const onDeleteCampaign = /* GraphQL */ `
       slotUsed
       brandID
       scheduleID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Programs {
         nextToken
-        startedAt
       }
     }
   }
@@ -210,14 +171,10 @@ export const onCreateCategory = /* GraphQL */ `
     onCreateCategory {
       id
       name
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Brands {
         nextToken
-        startedAt
       }
     }
   }
@@ -227,14 +184,10 @@ export const onUpdateCategory = /* GraphQL */ `
     onUpdateCategory {
       id
       name
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Brands {
         nextToken
-        startedAt
       }
     }
   }
@@ -244,14 +197,10 @@ export const onDeleteCategory = /* GraphQL */ `
     onDeleteCategory {
       id
       name
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Brands {
         nextToken
-        startedAt
       }
     }
   }
@@ -262,14 +211,10 @@ export const onCreateBrand = /* GraphQL */ `
       id
       name
       categoryID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Campaigns {
         nextToken
-        startedAt
       }
     }
   }
@@ -280,14 +225,10 @@ export const onUpdateBrand = /* GraphQL */ `
       id
       name
       categoryID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Campaigns {
         nextToken
-        startedAt
       }
     }
   }
@@ -298,14 +239,10 @@ export const onDeleteBrand = /* GraphQL */ `
       id
       name
       categoryID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       Campaigns {
         nextToken
-        startedAt
       }
     }
   }
@@ -316,9 +253,6 @@ export const onCreateProgramCampaign = /* GraphQL */ `
       id
       programID
       campaignID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       program {
@@ -328,9 +262,6 @@ export const onCreateProgramCampaign = /* GraphQL */ `
         startDate
         slotAvailable
         scheduleID
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -344,9 +275,6 @@ export const onCreateProgramCampaign = /* GraphQL */ `
         slotUsed
         brandID
         scheduleID
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -359,9 +287,6 @@ export const onUpdateProgramCampaign = /* GraphQL */ `
       id
       programID
       campaignID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       program {
@@ -371,9 +296,6 @@ export const onUpdateProgramCampaign = /* GraphQL */ `
         startDate
         slotAvailable
         scheduleID
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -387,9 +309,6 @@ export const onUpdateProgramCampaign = /* GraphQL */ `
         slotUsed
         brandID
         scheduleID
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -402,9 +321,6 @@ export const onDeleteProgramCampaign = /* GraphQL */ `
       id
       programID
       campaignID
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       program {
@@ -414,9 +330,6 @@ export const onDeleteProgramCampaign = /* GraphQL */ `
         startDate
         slotAvailable
         scheduleID
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -430,9 +343,6 @@ export const onDeleteProgramCampaign = /* GraphQL */ `
         slotUsed
         brandID
         scheduleID
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
